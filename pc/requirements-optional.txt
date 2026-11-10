@@ -1,0 +1,3 @@
+# Nessuna dipendenza è obbligatoria: il programma usa solo la libreria standard.
+# Facoltative:
+windows-curses; sys_platform == "win32"   # tabella live a schermo intero anche su Windows

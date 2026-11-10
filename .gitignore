@@ -1,0 +1,59 @@
+# ---------------------------------------------------------------- dati personali: MAI nel repository
+# config.json contiene le chiavi API (VirusTotal, AbuseIPDB, ...), la posizione di casa e i percorsi locali
+pc/config.json
+config.json
+# destinazioni fidate, sessioni registrate, catture (pcap/csv/json), screenshot e report: traffico del telefono
+pc/trusted.json
+pc/sessions/
+pc/captures/
+droidsnex-report-*.html
+# chiavi di firma e credenziali
+*.jks
+*.keystore
+keystore.properties
+*.pem
+*.key
+.env
+.env.*
+
+# ---------------------------------------------------------------- file scaricati dal tab Config (non ridistribuibili)
+pc/data/
+pc/tools/platform-tools/
+pc/tools/scrcpy/
+
+# ---------------------------------------------------------------- compilati
+# eseguibile (pc/tools/build_exe.py) e zip della release
+pc/dist/
+pc/build/
+*.spec
+# APK dell'agent: si compila, non si versiona (va nello zip della release come DroidSnex.apk)
+*.apk
+*.aab
+
+# ---------------------------------------------------------------- Android / Gradle
+android/.gradle/
+android/build/
+android/app/build/
+android/local.properties
+android/captures/
+android/.kotlin/
+android/.idea/
+*.iml
+
+# ---------------------------------------------------------------- Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+
+# ---------------------------------------------------------------- IDE, sistema, strumenti locali
+.idea/
+.vscode/
+Thumbs.db
+desktop.ini
+.DS_Store
+*.log
+# materiale di lavoro
+Garbage/

@@ -1,0 +1,30 @@
+DroidSnex
+Copyright (C) 2026 Andrea Cumini <andrea@osintinfo.net> - www.osintinfo.net
+
+This program is free software: you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option) any later
+version. See the LICENSE file.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE.
+
+DroidSnex's approach (local VpnService + user-space TCP/UDP stack) is the same
+as tools like PCAPdroid (GPL-3.0, Emanuele Faranda); no PCAPdroid code is used:
+the code of this repository is written from scratch.
+
+-------------------------------------------------------------------------------
+Required attributions for data used by DroidSnex
+-------------------------------------------------------------------------------
+
+* IP Geolocation by DB-IP - https://db-ip.com
+  DB-IP City Lite / ASN Lite databases, licensed under the Creative Commons
+  Attribution 4.0 International License (CC BY 4.0).
+  The databases are downloaded by the user at runtime and are not
+  redistributed with DroidSnex.
+
+* Made with Natural Earth. Free vector and raster map data
+  @ naturalearthdata.com (public domain).
+
+Full list of third-party components, licenses and terms: THIRD_PARTY_NOTICES.md

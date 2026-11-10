@@ -1,0 +1,12 @@
+# DroidSnex (programma PC) — dipendenze Python.   pip install -r requirements.txt
+# Python 3.9 o successivo. Il resto del programma usa solo la libreria standard.
+
+# Interfaccia grafica (python pc/gui.py)
+customtkinter>=5.2,<6
+pillow>=10
+
+# Solo Windows: tabella live a schermo intero da riga di comando (python pc/run.py)
+windows-curses; sys_platform == "win32"
+
+# Solo per creare l'eseguibile (python pc/tools/build_exe.py): togli il commento se ti serve
+# pyinstaller>=6

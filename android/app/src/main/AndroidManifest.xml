@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Server JSON-lines su 127.0.0.1 e socket "protetti" verso Internet -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- Per leggere i DNS della rete reale (sotto la VPN) -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- Servizio in foreground (obbligatorio per una VPN che resta attiva) -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <!-- Android 11+: senza questo getPackagesForUid() non "vede" le altre app
+         e non potremmo tradurre UID -> nome pacchetto. App da sideload, non Play. -->
+    <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES" />
+    <!-- Per mostrare la richiesta di disinstallazione quando il PC sparisce (watchdog) -->
+    <uses-permission android:name="android.permission.REQUEST_DELETE_PACKAGES" />
+
+    <application
+        android:allowBackup="false"
+        android:icon="@mipmap/ic_launcher"
+        android:label="DroidSnex"
+        android:supportsRtl="true"
+        android:theme="@android:style/Theme.Material.NoActionBar">
+
+        <!-- launchMode singleTask: i comandi "am start" dal PC riusano l'activity esistente -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:launchMode="singleTask">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <!-- Azioni usate dal programma PC: adb shell am start -a com.droidsnex.agent.START ... -->
+            <intent-filter>
+                <action android:name="com.droidsnex.agent.START" />
+                <action android:name="com.droidsnex.agent.STOP" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <!-- Il servizio VPN: BIND_VPN_SERVICE garantisce che solo il sistema possa legarsi -->
+        <service
+            android:name=".CaptureService"
+            android:exported="false"
+            android:foregroundServiceType="specialUse"
+            android:permission="android.permission.BIND_VPN_SERVICE">
+            <intent-filter>
+                <action android:name="android.net.VpnService" />
+            </intent-filter>
+            <property
+                android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
+                android:value="Local VPN used only to observe connection metadata of this device" />
+        </service>
+    </application>
+</manifest>
