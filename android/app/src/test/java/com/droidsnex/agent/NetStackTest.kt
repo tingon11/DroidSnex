@@ -44,6 +44,7 @@ class NetStackTest {
             override fun onHostFound(f: Flow) {}
             override fun onClosed(f: Flow) { closed.add(f) }
             override fun onDnsAnswers(answers: List<Pair<String, String>>) { dns.addAll(answers) }
+            override fun onDnsResponse(f: Flow, r: Dns.Response, rttMs: Long) {}
         }, byteArrayOf(10, 215.toByte(), 173.toByte(), 2)) { InetAddress.getByName("127.0.0.1") }
         val thread = Thread { fwd.run() }.apply { isDaemon = true; start() }
         fun recv(): ParsedPacket {
